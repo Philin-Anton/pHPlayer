@@ -1,0 +1,25 @@
+{
+  "name": "referal-score",
+  "version": "0.0.0",
+  "authors": [
+    "Anton.Filin <Philin.Anton@gmail.com>"
+  ],
+  "main": "",
+  "keywords": [
+    "bower",
+    "node",
+    "npm"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "jdataview": "~2.5.0",
+    "jquery": "~2.1.4",
+    "underscore": "~1.8.3"
+  }
+}

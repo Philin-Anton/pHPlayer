@@ -1,0 +1,8 @@
+<% _.each(items , function(itemSong, key, list){ %>
+
+<li class="itemSong" data-id=<%= key %>>
+    <span><%= itemSong.songFile.name %></span>
+    <span class='timeSong'><%= formatTime(itemSong.buffer.duration) %></span>
+</li>
+
+<% }); %>
