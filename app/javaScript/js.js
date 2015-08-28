@@ -7,9 +7,8 @@
     global.PHPlayerInit = factory();
 })
 (window, function(){
-
+    "use strict";
     function PHPlayerInit (element){
-        "use strict";
         this.context = new (window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.oAudioContext || window.msAudioContext)();
         if(!this.context) return;
         this.el = element;
