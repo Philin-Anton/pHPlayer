@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-<div id="player">
+<div id="pHPlayer">
     <div id="playerControl">
         <div class="thisPlay">
             <div id="playerTimer">00:00</div>
-            <div class="nameSong"></div>
+            <div class="fullNameSong"></div>
         </div>
         <canvas id="playerCanvas" width="800" height="350"></canvas>
         <div id="playerMetaData">
@@ -28,10 +28,10 @@
     <ul id="playerList">
         <table>
             <tr>
-                <td class="StartDrop">
+                <td class="onDragLeave">
                     Please drag the song here
                 </td>
-                <td class="EnterDrop">
+                <td class="onDragOver">
                     Right here
                 </td>
             </tr>

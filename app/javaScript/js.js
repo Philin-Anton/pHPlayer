@@ -53,11 +53,8 @@
     PHPlayerInit.prototype.delegationEvent = function(elem, selector){
         var matchesSelector = elem.matches || elem.webkitMatchesSelector || elem.mozMatchesSelector || elem.msMatchesSelector;
         while (elem) {
-            if (matchesSelector.bind(elem)(selector)) {
-                return elem;
-            } else {
-                elem = elem.parentElement;
-            }
+            if (matchesSelector.bind(elem)(selector)) return elem;
+            elem = elem.parentElement;
         }
         return false;
     };
@@ -76,9 +73,9 @@
         this.progressSongTime = 0;
         this.play();
 
-        var createNameSong = this.songUse.songFile.name.split('.');
-        createNameSong.splice(-1, 1);
-        this.playerControl.querySelector('.nameSong').innerText =  createNameSong.join('');
+        var createFullNameSong = this.songUse.songFile.name.split('.');
+        createFullNameSong.splice(-1, 1);
+        this.playerControl.querySelector('.fullNameSong').innerText =  createFullNameSong.join('');
 
         this.playerMetaData.innerHTML = this.metaDataFrame = '';
         for(var method in this.songUse.metaData){
@@ -106,12 +103,14 @@
     };
 
     PHPlayerInit.prototype.onDragLeave = function(event){
+        this.playerList = this.playerList.closest('#playerList') || this.delegationEvent(this.playerList, '#playerList');
         this.playerList.className = 'onDragLeave';
         event.stopPropagation();
         event.preventDefault();
     };
 
     PHPlayerInit.prototype.onDragOver = function(event){
+        this.playerList = this.playerList.closest('#playerList') || this.delegationEvent(this.playerList, '#playerList');
         this.playerList.className = 'onDragOver';
         event.stopPropagation();
         event.preventDefault();
@@ -265,5 +264,5 @@
 });
 
 document.ready = document.addEventListener("DOMContentLoaded", function() {
-    new window.(document.querySelector('#player'));
+    new PHPlayerInit(document.querySelector('#pHPlayer'));
 });

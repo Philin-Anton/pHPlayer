@@ -1,9 +1,15 @@
+#pHPlayer{
+    max-width: 800px;
+    min-width: 400px;
+}
+#playerCanvas{
+    width: 100%;
+}
 #playerList{
     border: 1px solid #b0b0b0;
     height: 300px;
     width: 100%;
     overflow: auto;
-    background: #f4f4f4;
     list-style: none;
     padding: 0;
     position: relative;
@@ -13,19 +19,22 @@
     height: 100%;
     vertical-align: middle;
     text-align: center;
+    background: #f4f4f4;
     font-size: 25px;
+    position: relative;
+    z-index: -1;
 }
-#playerList table td{
+#playerList table td, #playerList.onDragOver table td.onDragLeave{
     display: none;
 }
-#playerList table td.StartDrop{
+#playerList table td.onDragLeave, #playerList.onDragLeave table td.onDragLeave{
     display: table-cell;
 }
-#playerList.StartDrag table td.StartDrop{
-     display: none;
- }
-#playerList.StartDrag table td.EnterDrop{
+#playerList.onDragOver table td.onDragOver{
     display: table-cell;
+}
+#playerList.onDragOver table{
+    background: #FFFC00;
 }
 
 #playerList li.itemSong#play{
@@ -48,6 +57,10 @@
 #playerList li:hover, #playerList li.itemSong#play{
     background: #00E824 ;
     color: #000;
+}
+#playerList li:active{
+    background: #FFFC00;
+    border: 1px solid #FFFC00;
 }
 #playerList #progressBar{
     height: 100%;
@@ -76,8 +89,9 @@
 #playerTimer{
     float: left;
 }
-.nameSong{
+.fullNameSong{
     float: right;
+    text-align: right;
 }
 .bottom{
     border: 1px solid #009000;

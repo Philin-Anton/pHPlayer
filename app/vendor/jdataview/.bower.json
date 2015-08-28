@@ -1,0 +1,42 @@
+{
+  "name": "jdataview",
+  "description": "A unique way to work with a binary file in the browser and the server.",
+  "version": "2.5.0",
+  "keywords": [
+    "buffer",
+    "binary",
+    "data",
+    "file",
+    "dataview",
+    "read",
+    "write",
+    "manipulation"
+  ],
+  "authors": [
+    "Vjeux <vjeuxx@gmail.com> (http://blog.vjeux.com/)",
+    "RReverser <me@rreverser.com> (http://rreverser.com)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jDataView/jDataView.git"
+  },
+  "main": "dist/browser/jdataview.js",
+  "ignore": [
+    "/*",
+    "!/dist",
+    "/dist/*",
+    "!/dist/browser"
+  ],
+  "license": "WTFPL",
+  "homepage": "https://github.com/jDataView/jDataView",
+  "_release": "2.5.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.5.0",
+    "commit": "2d56e0ffb93846dd07cb03ec6b32b78ec8cded6f"
+  },
+  "_source": "git://github.com/jDataView/jDataView.git",
+  "_target": "~2.5.0",
+  "_originalSource": "jdataview",
+  "_direct": true
+}
