@@ -52,8 +52,8 @@ gulp.task('html', function () {
 gulp.task('sources', function () {
     gulp.src([ APP_PATH + 'images/*'])
         .pipe(gulp.dest(buildPath('images')));
-    gulp.src([ APP_PATH + 'javaScript/libs/*'])
-        .pipe(gulp.dest(buildPath('javaScript/lib')));
+    gulp.src([ APP_PATH + 'javaScript/libs/**/*'])
+        .pipe(gulp.dest(buildPath('javaScript/libs')));
     gulp.src([ APP_PATH + 'vendor/**/*' ])
         .pipe(gulp.dest(buildPath('vendor')));
     gulp.src([ APP_PATH + 'templates/*' ])
