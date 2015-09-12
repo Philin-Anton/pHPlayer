@@ -1,0 +1,168 @@
+
+/* line 90 : D:\work\pHPlayer\app\styles\main.styl */
+
+/* line 1 : D:\work\pHPlayer\node_modules\gulp-stylus\node_modules\stylus\lib\functions\index.styl */
+
+/* line 1 : D:\work\pHPlayer\app\styles\main.styl */
+#pHPlayer {
+  max-width: 800px;
+  min-width: 400px;
+}
+
+/* line 4 : D:\work\pHPlayer\app\styles\main.styl */
+#playerCanvas {
+  width: 100%;
+}
+
+/* line 6 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList {
+  border: 1px solid #b0b0b0;
+  height: 300px;
+  width: 100%;
+  overflow: auto;
+  list-style: none;
+  padding: 0;
+  position: relative;
+}
+
+/* line 14 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList table {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  text-align: center;
+  background: #f4f4f4;
+  font-size: 25px;
+  position: relative;
+  z-index: -1;
+}
+
+/* line 23 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList table td,
+#playerList.onDragOver table td.onDragLeave {
+  display: none;
+}
+
+/* line 25 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList table td.onDragLeave,
+#playerList.onDragLeave table td.onDragLeave {
+  display: table-cell;
+}
+
+/* line 27 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList.onDragOver table td.onDragOver {
+  display: table-cell;
+}
+
+/* line 29 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList.onDragOver table {
+  background: #fffc00;
+}
+
+/* line 31 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList li.itemSong#play {
+  cursor: default;
+}
+
+/* line 33 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList li.itemSong {
+  padding: 5px 50px 5px 5px;
+  cursor: pointer;
+  border: 1px solid #00e824;
+  margin: 0 0 5px;
+  position: relative;
+}
+
+/* line 39 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList .timeSong {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  margin: -9px 0 0;
+}
+
+/* line 44 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList li:hover,
+#playerList li.itemSong#play {
+  background: #00e824;
+  color: #000;
+}
+
+/* line 47 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList li:active {
+  background: #fffc00;
+  border: 1px solid #fffc00;
+}
+
+/* line 50 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList #progressBar {
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 0;
+  background: #00e824;
+  -webkit-transition: all 0.5s;
+          transition: all 0.5s;
+}
+
+/* line 58 : D:\work\pHPlayer\app\styles\main.styl */
+#playerList #progressBar span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -9px 0 0 -33px;
+}
+
+/* line 63 : D:\work\pHPlayer\app\styles\main.styl */
+#playerRange,
+#canvas {
+  width: 100%;
+}
+
+/* line 65 : D:\work\pHPlayer\app\styles\main.styl */
+#canvas {
+  max-height: 350px;
+}
+
+/* line 67 : D:\work\pHPlayer\app\styles\main.styl */
+.thisPlay {
+  overflow: hidden;
+}
+
+/* line 69 : D:\work\pHPlayer\app\styles\main.styl */
+#playerTimer {
+  float: left;
+}
+
+/* line 71 : D:\work\pHPlayer\app\styles\main.styl */
+.fullNameSong {
+  float: right;
+  text-align: right;
+}
+
+/* line 74 : D:\work\pHPlayer\app\styles\main.styl */
+.bottom {
+  border: 1px solid #009000;
+  height: 32px;
+  line-height: 32px;
+  background: #0f0;
+  text-align: center;
+  display: inline-block;
+  margin: 0 -0.49em 0 0;
+  width: 50%;
+  cursor: pointer;
+}
+
+/* line 84 : D:\work\pHPlayer\app\styles\main.styl */
+.bottom:hover {
+  border: 1px solid #939000;
+  background: #fffc00;
+}
+
+/* line 87 : D:\work\pHPlayer\app\styles\main.styl */
+.bottom:active {
+  border-bottom: 1px solid #ffcd00;
+  border-top: 1px solid #695000;
+  background: #ffcd00;
+}

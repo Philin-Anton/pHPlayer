@@ -9,8 +9,11 @@
 (window, function(){
     "use strict";
     function PHPlayerInit (element){
-        this.context = new (window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.oAudioContext || window.msAudioContext)();
+        var AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.oAudioContext || window.msAudioContext;
+        this.context = new (AudioContext)();
         if(!this.context) return;
+        this.$ = window.$;
+        this._ = window._;
         this.el = element;
         this.tempListSong = [];
         this.playerControl = this.el.querySelector('#playerControl');
@@ -44,7 +47,7 @@
     };
     PHPlayerInit.prototype.onPlayerRangeChange = function(){
         this.progressSongTime = +this.playerRange.value;
-        this.play()
+        this.play();
     };
     PHPlayerInit.prototype.onPause = function(){
         this.pause();
@@ -82,7 +85,7 @@
             if((!isNaN(parseFloat(this.songUse.metaData[method])) && isFinite(this.songUse.metaData[method])) || isNaN(this.songUse.metaData[method]))
                 this.metaDataFrame += '<div class="' + method + '">' + method + ': ' + this.songUse.metaData[method] + '</div>';
         }
-        this.playerMetaData.innerHTML = this.metaDataFrame
+        this.playerMetaData.innerHTML = this.metaDataFrame;
     };
 
     PHPlayerInit.prototype.onDrop =  function(event){
@@ -92,9 +95,9 @@
         /*TODO: refactoring code*/
         this.renderProgressBar(songs);
         this.renderList(songs, function(){
-            $.get('templates/listSong.html', function(template_text){
-                console.log(this.tempListSong);
-                $("#playerList").html( _.template(template_text)({items: this.tempListSong}));
+            this.$.get('templates/listSong.html', function(template_text){
+                window.console.log(this.tempListSong);
+                this.$("#playerList").html( this._.template(template_text)({items: this.tempListSong}));
             }.bind(this));
         }.bind(this));
         /**/
@@ -117,17 +120,17 @@
 
     PHPlayerInit.prototype.loadMedia = function(song){
         /*TODO: refactoring code*/
-        var dfd = $.Deferred();
+        var dfd = this.$.Deferred();
 
         if(typeof song !== "string"){
-            var reader = new FileReader();
+            var reader = new window.FileReader();
             reader.readAsArrayBuffer(song);
             reader.onload = function (e){
-                this.args = $.makeArray(arguments);
+                this.args = this.$.makeArray(arguments);
                 this.decode(e.target.result, song, dfd);
             }.bind(this);
         }else{
-            var xhr = new XMLHttpRequest();
+            var xhr = new window.XMLHttpRequest();
             xhr.open('GET', song, true);
             xhr.responseType = 'arraybuffer';
             xhr.onload = function() {
@@ -140,7 +143,7 @@
     };
 
     PHPlayerInit.prototype.decode = function(arrayBuffer, song, dfd){
-        var dv = jDataView(arrayBuffer);
+        var dv = new window.jDataView(arrayBuffer);
         var songFile = song;
         var metaData = {};
         if (dv.getString(3, dv.byteLength - 128) == 'TAG') {
@@ -164,6 +167,7 @@
         }.bind(this));
 
     };
+
     /*TODO: refactoring code*/
     PHPlayerInit.prototype.renderProgressBar = function(songs){
         this.progressBarLength = 100/songs.length;
@@ -190,7 +194,7 @@
         this.source.connect(this.analyser);
         this.source.connect(this.destination);
 
-        visualizationSong(this.analyser, this.playerCanvas);
+        window.visualizationSong(this.analyser, this.playerCanvas);
     };
 
     PHPlayerInit.prototype.initPlayerRange = function(){
@@ -202,13 +206,13 @@
 
     PHPlayerInit.prototype.checkTimeCounter = function(){
         var time = this.progressSongTime;
-        clearInterval(this.counter);
+        window.clearInterval(this.counter);
         this.cycleSong();
-        this.playerTimer.innerHTML = formatTime(this.progressSongTime);
-        this.counter = setInterval(function(){
+        this.playerTimer.innerHTML = window.formatTime(this.progressSongTime);
+        this.counter = window.setInterval(function(){
             var counter =  +this.context.currentTime.toFixed(0) - this.currentTime + time;
             this.progressSongTime = ( counter >= this.songUse.buffer.duration ) ? this.progressSongTime : counter;
-            this.playerTimer.innerHTML = formatTime(this.progressSongTime);
+            this.playerTimer.innerHTML = window.formatTime(this.progressSongTime);
             this.playerRange.value = this.progressSongTime;
         }.bind(this), 100);
     };
@@ -217,8 +221,8 @@
         /*TODO: deleted*/
         this.isCycleSong = true;
         /*--*/
-        clearTimeout(this.nextSong);
-        this.nextSong = setTimeout(function(){ // TODO: find a way to switch to the inactive tab without "setTimeout"
+        window.clearTimeout(this.nextSong);
+        this.nextSong = window.setTimeout(function(){ // TODO: find a way to switch to the inactive tab without "setTimeout"
             if(!this.isCycleSong) return false;
             if(this.tempListSong.length-1<=this.idSong) {
                 this.onPlayListClick(this.thisElemlist.parentElement.children[0]) ;
@@ -243,25 +247,26 @@
 
     PHPlayerInit.prototype.pause = function(){
         if(!this.isPlay()) return;
-        clearInterval(this.counter);
-        clearTimeout(this.nextSong);
+        window.clearInterval(this.counter);
+        window.clearTimeout(this.nextSong);
         this.source.stop(0);
         this.source = null;
     };
 
     PHPlayerInit.prototype.renderList = function (songs, callback) {
         /*TODO: refactoring code*/
+        var $ = this.$;
         $.when.apply($, $.map($.makeArray(songs), function(song) {
             return this.loadMedia(song).then(function(){
-                console.log(this.tempListSong);
+                window.console.log(this.tempListSong);
                 this.playerList.children[0].style.width = this.progressBarLength * (this.tempListSong.length + 1) + '%';
             }.bind(this));
         }.bind(this))).then(callback);
     };
 
-    return PHPlayerInit
+    return PHPlayerInit;
 });
 
-document.ready = document.addEventListener("DOMContentLoaded", function() {
-    new PHPlayerInit(document.querySelector('#pHPlayer'));
+window.document.ready = window.document.addEventListener("DOMContentLoaded", function() {
+    new window.PHPlayerInit(window.document.querySelector('#pHPlayer'));
 });

@@ -1,0 +1,90 @@
+#pHPlayer
+  max-width 800px
+  min-width 400px
+#playerCanvas
+  width 100%
+#playerList
+  border 1px solid #b0b0b0
+  height 300px
+  width 100%
+  overflow auto
+  list-style none
+  padding 0
+  position relative
+  table
+    width 100%
+    height 100%
+    vertical-align middle
+    text-align center
+    background #f4f4f4
+    font-size 25px
+    position relative
+    z-index -1
+  & table td, &.onDragOver table td.onDragLeave
+    display none
+  & table td.onDragLeave, &.onDragLeave table td.onDragLeave
+    display table-cell
+  &.onDragOver table td.onDragOver
+    display table-cell
+  &.onDragOver table
+    background #FFFC00
+  & li.itemSong#play
+    cursor default
+  & li.itemSong
+    padding 5px 50px 5px 5px 
+    cursor pointer
+    border 1px solid #00E824
+    margin 0 0 5px
+    position relative
+  & .timeSong
+    position absolute
+    right 5px
+    top 50%
+    margin -9px 0 0
+  & li:hover, & li.itemSong#play
+    background #00E824 
+    color #000  
+  & li:active
+    background #FFFC00
+    border 1px solid #FFFC00  
+  & #progressBar
+    height 100%
+    left 0
+    top 0
+    z-index 1
+    width 0
+    background #00E824
+    transition all .5s  
+  & #progressBar span
+    position absolute
+    left 50%
+    top:50%
+    margin -9px 0 0 -33px
+#playerRange, #canvas
+  width 100%
+#canvas
+  max-height 350px
+.thisPlay
+  overflow hidden
+#playerTimer
+  float left
+.fullNameSong
+  float right
+  text-align right
+.bottom
+  border 1px solid #009000
+  height 32px
+  line-height 32px
+  background #0f0
+  text-align center
+  display inline-block
+  margin 0 -0.49em 0 0
+  width 50%
+  cursor pointer
+.bottom:hover
+  border 1px solid #939000
+  background #FFFC00
+.bottom:active
+  border-bottom 1px solid #FFCD00
+  border-top 1px solid #695000
+  background #FFCD00
