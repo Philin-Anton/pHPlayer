@@ -24,12 +24,12 @@ gulp.task('setProduction', function () {
 });
 
 gulp.task('cleanjs', function () {
-    gulp.src(buildPath('js'), {read: false})
+    gulp.src(buildPath('javaScript'), {read: false})
         .pipe(clean({force: true}));
 });
 
 gulp.task('cleancss', function () {
-    gulp.src(buildPath('css/*'), {read: false})
+    gulp.src(buildPath('styles/*'), {read: false})
         .pipe(clean({force: true}));
 });
 
@@ -42,7 +42,7 @@ gulp.task('stylus', ['cleancss'], function () {
         .pipe(stylus({linenos: !prod}))
         .pipe(prefix())
         .pipe(prod ? minify() : gutil.noop())
-        .pipe(gulp.dest(buildPath('css')));
+        .pipe(gulp.dest(buildPath('styles')));
 });
 
 gulp.task('html', function () {
@@ -53,8 +53,8 @@ gulp.task('sources', function () {
     gulp.src([ APP_PATH + 'images/*'])
         .pipe(gulp.dest(buildPath('images')));
     gulp.src([ APP_PATH + 'javaScript/libs/*'])
-        .pipe(gulp.dest(buildPath('js/lib')));
-    gulp.src([ APP_PATH + 'vendor/*' ])
+        .pipe(gulp.dest(buildPath('javaScript/lib')));
+    gulp.src([ APP_PATH + 'vendor/**/*' ])
         .pipe(gulp.dest(buildPath('vendor')));
     gulp.src([ APP_PATH + 'templates/*' ])
         .pipe(gulp.dest(buildPath('templates')));
@@ -72,7 +72,7 @@ gulp.task('hint', function () {
         .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('js', ['cleanjs', 'hint'], function () {
+gulp.task('javaScript', ['cleanjs', 'hint'], function () {
     var browserify = require('browserify'),
         uglify     = require('gulp-uglify');
 
@@ -84,13 +84,13 @@ gulp.task('js', ['cleanjs', 'hint'], function () {
         .bundle()
         .pipe(source('main.js'))
         .pipe(prod ? streamify(uglify()) : gutil.noop())
-        .pipe(gulp.dest(buildPath('js')));
+        .pipe(gulp.dest(buildPath('javaScript')));
 });
 
-gulp.task('build', ['stylus', 'js', 'html', 'sources']);
+gulp.task('build', ['stylus', 'javaScript', 'html', 'sources']);
 
 gulp.task('prod', function () {
-    sequence('setProduction', ['stylus', 'js'])
+    sequence('setProduction', ['stylus', 'javaScript'])
 });
 
 gulp.task('watch', ['stylus'] ,function () {
@@ -110,7 +110,7 @@ gulp.task('watch', ['stylus'] ,function () {
         gutil.log(gutil.colors.green('Starting Watchify rebundle'));
         return bundler.bundle()
             .pipe(source('main.js'))
-            .pipe(gulp.dest(buildPath('js')))
+            .pipe(gulp.dest(buildPath('javaScript')))
             .on('end', function () {
                 gutil.log(gutil.colors.green('Finished bundling after:'), gutil.colors.magenta(Date.now() - t + ' ms'));
             });
